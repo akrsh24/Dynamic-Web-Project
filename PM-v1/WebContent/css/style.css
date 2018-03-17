@@ -1,0 +1,17 @@
+.container{
+	margin:50px;
+	font-family: fantasy;
+}
+
+.page-header{
+	padding-left: 550px;
+	font-family: cursive;
+	background-color: yellow;
+}
+
+.pm-btn{
+	padding-left:600px;
+}
+.btn{
+	background-color: #FFFAF0;
+}
