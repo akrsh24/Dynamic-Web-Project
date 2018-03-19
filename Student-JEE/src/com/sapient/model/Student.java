@@ -4,7 +4,16 @@ public class Student {
 
 	private int rollno;
 	private String name;
+	private String country;
 	private String dept;
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
 
 	public int getRollno() {
 		return rollno;

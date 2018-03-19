@@ -17,11 +17,14 @@ public class StudentRepositoryImpl implements StudentRepository {
 
 		try {
 			connection = MySQLConnectionFactory.getConnection();
-			String sql = "insert into student.STUDENTS(name,department) values(?,?)";
+			String sql = "insert into student.STUDENTS(rollno,name,country,department) values(?,?,?,?)";
 			PreparedStatement ps = connection.prepareStatement(sql);
-			ps.setString(1, student.getName());
-			ps.setString(2, student.getDept());
-
+			
+			ps.setInt(1, student.getRollno());
+			ps.setString(2, student.getName());
+			ps.setString(3, student.getCountry());
+			ps.setString(4, student.getDept());
+			
 			int count = ps.executeUpdate();
 
 			if (count == 1) {
@@ -58,8 +61,11 @@ public class StudentRepositoryImpl implements StudentRepository {
 			rs.next();
 
 			student = new Student();
-			student.setName(rs.getString(1));
-			student.setDept(rs.getString(2));
+			student.setRollno(Integer.parseInt(rs.getString(1)));
+			student.setName(rs.getString(2));
+			student.setCountry(rs.getString(3));
+			student.setDept(rs.getString(4));
+			
 
 		} catch (SQLException e) {
 

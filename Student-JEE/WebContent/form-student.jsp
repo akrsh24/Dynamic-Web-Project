@@ -9,7 +9,21 @@
 </head>
 <body>
 	<div class="container">
-		<form action="load-students" method="post">
+		<div class="page-header">Student Information Portal</div>
+		<hr />
+		<br />
+		<form action="add-students" method="post">
+
+			<div class="row">
+				<div class="col-25">
+					<label for="rollno">Roll No:</label>
+				</div>
+				<div class="col-75">
+					<input type="number" id="rollno" name="rollno"
+						placeholder="Your roll no...">
+				</div>
+			</div>
+
 			<div class="row">
 				<div class="col-25">
 					<label for="name">Name</label>
@@ -31,6 +45,7 @@
 					</select>
 				</div>
 			</div>
+
 			<div class="row">
 				<div class="col-25">
 					<label for="department">Department</label>
@@ -49,5 +64,7 @@
 			</div>
 		</form>
 	</div>
+	 <script src="./node_modules/jquery/dist/jquery.js"></script>
+    <script src="./app.js"></script>
 </body>
 </html>

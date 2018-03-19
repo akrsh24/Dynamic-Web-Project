@@ -9,14 +9,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.sapient.model.Student;
 import com.sapient.repository.StudentRepository;
+import com.sapient.repository.StudentRepositoryImpl;
 
 /**
  * Servlet implementation class WebController
  */
-@WebServlet({ "/load-students", "/add-students" })
+@WebServlet(urlPatterns = { "/add-students" })
 public class StudentController extends HttpServlet {
 
-	StudentRepository repository = null;
+	StudentRepository repository = new StudentRepositoryImpl();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -25,11 +26,13 @@ public class StudentController extends HttpServlet {
 		// String path=uri.substring(uri.lastIndexOf("/"));
 		// if(path.equals("/))
 
-		String rollno = request.getParameter("rollno");
-		Student student = repository.findStudent(Integer.parseInt(rollno));
+		// String rollno = request.getParameter("rollno");
+		// Student student = repository.findStudent(Integer.parseInt(rollno));
 
-		request.setAttribute("student", student);
-		request.getRequestDispatcher("SM.jsp").forward(request, response);
+//		response.sendRedirect("add-students");
+
+		// request.setAttribute("student", student);
+		// request.getRequestDispatcher("form-student.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -38,17 +41,20 @@ public class StudentController extends HttpServlet {
 		Student student = new Student();
 
 		// INPUT
+		String rollno = request.getParameter("rollno");
 		String name = request.getParameter("name");
+		String country = request.getParameter("country");
 		String department = request.getParameter("department");
-		System.out.println(name+department);
-		// Mapping to object
 
+		// Mapping to object
+		student.setRollno(Integer.parseInt(rollno));
 		student.setName(name);
+		student.setCountry(country);
 		student.setDept(department);
 
 		repository.addStudent(student);
 
-		response.sendRedirect("load-students");
+//		response.sendRedirect("add-students");
 
 	}
 
